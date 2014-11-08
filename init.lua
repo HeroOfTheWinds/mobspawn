@@ -7,6 +7,7 @@ local redo = false --Switch to determine if the mobs mod is TenPlus1's mobs_redo
 local SPAWN_INTERVAL = 30 --Rate at which mobs are spawned (in seconds)
 local CHANCE = 1 --Chance of mob spawning at each interval. 1=always
 local MAX_MOBS = 7 --Max number of mobs that can be in the vicinity of a spawner for a mob to spawn.  If lag is a concern, keep to a low value. (A strong singleplayer PC can handle 10-20 though...)
+local MAX_LIGHT = 9 --Max light in which mobs are spawned
 
 --If the mod is "mobs", whose version is it?
 if (minetest.get_modpath("mobs")) then
@@ -70,7 +71,7 @@ for _,mob in pairs(mobspawn.mobs) do
 			--Randomize spawn location
 			local npos = {x=pos.x + math.random(-3,3), y=pos.y, z=pos.z + math.random(-3,3)}
 			--Make sure it's a sufficiently dark room
-			if (minetest.get_node_light(npos) < 9) then
+			if (minetest.get_node_light(npos) < MAX_LIGHT) then
 				local count = 0
 				--check how many mobs are nearby
 				for _,ent in pairs(minetest.get_objects_inside_radius(pos, 6)) do

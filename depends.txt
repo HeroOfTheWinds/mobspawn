@@ -1,2 +1,6 @@
 default
 mobs?
+carbone_mobs?
+mobf?
+creatures?
+zmobs?

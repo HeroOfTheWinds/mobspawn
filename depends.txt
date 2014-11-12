@@ -5,3 +5,6 @@ mobf?
 creatures?
 zmobs?
 senderman?
+kpgmobs?
+ccmobs?
+spidermob?

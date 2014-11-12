@@ -7,7 +7,7 @@ local redo = false --Switch to determine if the mobs mod is TenPlus1's mobs_redo
 local SPAWN_INTERVAL = 30 --Rate at which mobs are spawned (in seconds)
 local CHANCE = 1 --Chance of mob spawning at each interval. 1=always
 local MAX_MOBS = 7 --Max number of mobs that can be in the vicinity of a spawner for a mob to spawn.  If lag is a concern, keep to a low value. (A strong singleplayer PC can handle 10-20 though...)
-local MAX_LIGHT = 9 --Max light in which mobs are spawned
+local MAX_LIGHT = 10 --Max light in which mobs are spawned
 
 --If the mod is "mobs", whose version is it?
 if (minetest.get_modpath("mobs")) then
@@ -25,37 +25,54 @@ mobspawn.mobs = {} --List to hold all registered mobs that are to be affected by
 --
 -- Comment/uncomment lines or groups of lines to enable or disable particular mobs
 -- Use this to prevent registering the same spawner multiple times for name conflicts between mods
-
-if redo then
-	--List all the hostile mobs in Mobs Redo
-	table.insert(mobspawn.mobs,	{name="dirt_monster", desc="Dirt Monster", code="mobs:dirt_monster"})
-	table.insert(mobspawn.mobs,	{name="sand_monster", desc="Sand Monster", code="mobs:sand_monster"})
-	table.insert(mobspawn.mobs,	{name="tree_monster", desc="Tree Monster", code="mobs:tree_monster"})
-	table.insert(mobspawn.mobs,	{name="stone_monster", desc="Stone Monster", code="mobs:stone_monster"})
-	table.insert(mobspawn.mobs,	{name="oerkki", desc="Oerkki", code="mobs:oerkki"})
-	table.insert(mobspawn.mobs,	{name="dungeon_master", desc="Dungeon Master", code="mobs:dungeon_master"})
-	table.insert(mobspawn.mobs,	{name="spider", desc="Spider", code="mobs:spider"})
-	table.insert(mobspawn.mobs,	{name="lava_flan", desc="Lava Flan", code="mobs:lava_flan"})
-	table.insert(mobspawn.mobs,	{name="mese_monster", desc="Mese Monster", code="mobs:mese_monster"})
-	
-	--table.insert(mobspawn.mobs,	{name="sheep", desc="Sheep", code="mobs:sheep"})
-	--table.insert(mobspawn.mobs,	{name="chicken", desc="Chicken", code="mobs:chicken"})
-	--table.insert(mobspawn.mobs,	{name="sheep", desc="Sheep", code="mobs:rat"})
-	--table.insert(mobspawn.mobs,	{name="cow", desc="Cow", code="mobs:cow"})
-	--table.insert(mobspawn.mobs,	{name="bee", desc="Bee", code="mobs:bee"})
-	--table.insert(mobspawn.mobs,	{name="warthog", desc="Warthog", code="mobs:warthog"})
-else
-	--List all the hostile mobs in Simple Mobs
-	table.insert(mobspawn.mobs,	{name="dirt_monster", desc="Dirt Monster", code="mobs:dirt_monster"})
-	table.insert(mobspawn.mobs,	{name="sand_monster", desc="Sand Monster", code="mobs:sand_monster"})
-	table.insert(mobspawn.mobs,	{name="tree_monster", desc="Tree Monster", code="mobs:tree_monster"})
-	table.insert(mobspawn.mobs,	{name="stone_monster", desc="Stone Monster", code="mobs:stone_monster"})
-	table.insert(mobspawn.mobs,	{name="oerkki", desc="Oerkki", code="mobs:oerkki"})
-	table.insert(mobspawn.mobs,	{name="dungeon_master", desc="Dungeon Master", code="mobs:dungeon_master"})
-	
-	--table.insert(mobspawn.mobs,	{name="sheep", desc="Sheep", code="mobs:sheep"})
-	--table.insert(mobspawn.mobs,	{name="chicken", desc="Chicken", code="mobs:chicken"})
-	--table.insert(mobspawn.mobs,	{name="rat", desc="Rat", code="mobs:rat"})
+if (minetest.get_modpath("mobs")) then
+	if redo then
+		--List all the hostile mobs in Mobs Redo or Mobs++
+		table.insert(mobspawn.mobs,	{name="dirt_monster", desc="Dirt Monster", code="mobs:dirt_monster"})
+		table.insert(mobspawn.mobs,	{name="sand_monster", desc="Sand Monster", code="mobs:sand_monster"})
+		table.insert(mobspawn.mobs,	{name="tree_monster", desc="Tree Monster", code="mobs:tree_monster"})
+		table.insert(mobspawn.mobs,	{name="stone_monster", desc="Stone Monster", code="mobs:stone_monster"})
+		table.insert(mobspawn.mobs,	{name="oerkki", desc="Oerkki", code="mobs:oerkki"})
+		table.insert(mobspawn.mobs,	{name="dungeon_master", desc="Dungeon Master", code="mobs:dungeon_master"})
+		table.insert(mobspawn.mobs,	{name="spider", desc="Spider", code="mobs:spider"})
+		table.insert(mobspawn.mobs,	{name="lava_flan", desc="Lava Flan", code="mobs:lava_flan"})
+		table.insert(mobspawn.mobs,	{name="mese_monster", desc="Mese Monster", code="mobs:mese_monster"})
+		--Mobs++ Specific
+		if (minetest.registered_entities["mobs:littlespider"]) then
+			table.insert(mobspawn.mobs,	{name="littlespider", desc="Little Spider", code="mobs:littlespider"})
+		end
+		if (minetest.registered_entities["mobs:wardog"]) then
+			table.insert(mobspawn.mobs,	{name="wardog", desc="War Dog", code="mobs:wardog"})
+		end
+		if (minetest.registered_entities["mobs:warspider"]) then
+			table.insert(mobspawn.mobs,	{name="warspider", desc="War Spider", code="mobs:warspider"})
+		end
+		if (minetest.registered_entities["mobs:wolf"]) then
+			table.insert(mobspawn.mobs,	{name="wolf", desc="Wolf", code="mobs:wolf"})
+		end
+		if (minetest.registered_entities["mobs:yeti"]) then
+			table.insert(mobspawn.mobs,	{name="yeti", desc="Yeti", code="mobs:yeti"})
+		end
+		
+		--table.insert(mobspawn.mobs,	{name="sheep", desc="Sheep", code="mobs:sheep"})
+		--table.insert(mobspawn.mobs,	{name="chicken", desc="Chicken", code="mobs:chicken"})
+		--table.insert(mobspawn.mobs,	{name="sheep", desc="Sheep", code="mobs:rat"})
+		--table.insert(mobspawn.mobs,	{name="cow", desc="Cow", code="mobs:cow"})
+		--table.insert(mobspawn.mobs,	{name="bee", desc="Bee", code="mobs:bee"})
+		--table.insert(mobspawn.mobs,	{name="warthog", desc="Warthog", code="mobs:warthog"})
+	else
+		--List all the hostile mobs in Simple Mobs
+		table.insert(mobspawn.mobs,	{name="dirt_monster", desc="Dirt Monster", code="mobs:dirt_monster"})
+		table.insert(mobspawn.mobs,	{name="sand_monster", desc="Sand Monster", code="mobs:sand_monster"})
+		table.insert(mobspawn.mobs,	{name="tree_monster", desc="Tree Monster", code="mobs:tree_monster"})
+		table.insert(mobspawn.mobs,	{name="stone_monster", desc="Stone Monster", code="mobs:stone_monster"})
+		table.insert(mobspawn.mobs,	{name="oerkki", desc="Oerkki", code="mobs:oerkki"})
+		table.insert(mobspawn.mobs,	{name="dungeon_master", desc="Dungeon Master", code="mobs:dungeon_master"})
+		
+		--table.insert(mobspawn.mobs,	{name="sheep", desc="Sheep", code="mobs:sheep"})
+		--table.insert(mobspawn.mobs,	{name="chicken", desc="Chicken", code="mobs:chicken"})
+		--table.insert(mobspawn.mobs,	{name="rat", desc="Rat", code="mobs:rat"})
+	end
 end
 
 if minetest.get_modpath("zmobs") then
@@ -180,6 +197,37 @@ if minetest.get_modpath("mobf") then
 	--if minetest.get_modpath("mob_shark") then
 		--table.insert(mobspawn.mobs,	{name="shark", desc="Shark", code="mob_shark:shark"})
 	--end
+end
+
+if minetest.get_modpath("spidermob") then
+	table.insert(mobspawn.mobs,	{name="spider", desc="Spider", code="spidermob:spider"})
+end
+
+if (minetest.get_modpath("ccmobs")) then
+	table.insert(mobspawn.mobs,	{name="cc_chicken", desc="Cubic Chicken", code="ccmobs:chicken"})
+	table.insert(mobspawn.mobs,	{name="cc_cow", desc="Cubic Cow", code="ccmobs:cow"})
+	table.insert(mobspawn.mobs,	{name="cc_nyan_cat", desc="Cubic Nyan Cat", code="ccmobs:nyan_cat"})
+	table.insert(mobspawn.mobs,	{name="cc_pig", desc="Cubic Pig", code="ccmobs:pig"})
+	table.insert(mobspawn.mobs,	{name="cc_rabbit", desc="Cubic Rabbit", code="ccmobs:rabbit"})
+	table.insert(mobspawn.mobs,	{name="cc_sheep", desc="Cubic Sheep", code="ccmobs:sheep"})
+end
+
+if (minetest.get_modpath("kpgmobs")) then
+	table.insert(mobspawn.mobs,	{name="sheep", desc="Sheep", code="kpgmobs:sheep"})
+	table.insert(mobspawn.mobs,	{name="rat", desc="Rat", code="kpgmobs:rat"})
+	table.insert(mobspawn.mobs,	{name="bee", desc="Bee", code="kpgmobs:bee"})
+	table.insert(mobspawn.mobs,	{name="deer", desc="Deer", code="kpgmobs:deer"})
+	table.insert(mobspawn.mobs,	{name="horse", desc="Horse", code="kpgmobs:horse"})
+	table.insert(mobspawn.mobs,	{name="horse3", desc="Horse 3", code="kpgmobs:horse3"})
+	table.insert(mobspawn.mobs,	{name="horse2", desc="Horse 2", code="kpgmobs:horse2"})
+	table.insert(mobspawn.mobs,	{name="horseh1", desc="Horse", code="kpgmobs:horseh1"})
+	table.insert(mobspawn.mobs,	{name="horsepegh1", desc="Peg Horse", code="kpgmobs:horsepegh1"})
+	table.insert(mobspawn.mobs,	{name="horsearah1", desc="Arabian Horse", code="kpgmobs:horseara1"})
+	table.insert(mobspawn.mobs,	{name="wolf", desc="Wolf", code="kpgmobs:wolf"})
+	table.insert(mobspawn.mobs,	{name="pumba", desc="Pumba", code="kpgmobs:pumba"})
+	table.insert(mobspawn.mobs,	{name="jeraf", desc="Giraffe", code="kpgmobs:jeraf"})
+	table.insert(mobspawn.mobs,	{name="medved", desc="Medved", code="kpgmobs:medved"})
+	table.insert(mobspawn.mobs,	{name="cow", desc="Cow", code="kpgmobs:cow"})
 end
 
 --Create a spawner for each mob

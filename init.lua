@@ -62,12 +62,31 @@ if (minetest.get_modpath("mobs")) then
 		--table.insert(mobspawn.mobs,	{name="warthog", desc="Warthog", code="mobs:warthog"})
 	else
 		--List all the hostile mobs in Simple Mobs
-		table.insert(mobspawn.mobs,	{name="dirt_monster", desc="Dirt Monster", code="mobs:dirt_monster"})
-		table.insert(mobspawn.mobs,	{name="sand_monster", desc="Sand Monster", code="mobs:sand_monster"})
-		table.insert(mobspawn.mobs,	{name="tree_monster", desc="Tree Monster", code="mobs:tree_monster"})
-		table.insert(mobspawn.mobs,	{name="stone_monster", desc="Stone Monster", code="mobs:stone_monster"})
-		table.insert(mobspawn.mobs,	{name="oerkki", desc="Oerkki", code="mobs:oerkki"})
-		table.insert(mobspawn.mobs,	{name="dungeon_master", desc="Dungeon Master", code="mobs:dungeon_master"})
+		if (minetest.registered_entities["mobs:dirt_monster"]) then --use this to assume if Simple Mobs is installed rather than Minecraft Monsters
+			table.insert(mobspawn.mobs,	{name="dirt_monster", desc="Dirt Monster", code="mobs:dirt_monster"})
+			table.insert(mobspawn.mobs,	{name="sand_monster", desc="Sand Monster", code="mobs:sand_monster"})
+			table.insert(mobspawn.mobs,	{name="tree_monster", desc="Tree Monster", code="mobs:tree_monster"})
+			table.insert(mobspawn.mobs,	{name="stone_monster", desc="Stone Monster", code="mobs:stone_monster"})
+			table.insert(mobspawn.mobs,	{name="oerkki", desc="Oerkki", code="mobs:oerkki"})
+			table.insert(mobspawn.mobs,	{name="dungeon_master", desc="Dungeon Master", code="mobs:dungeon_master"})
+		end
+		
+		--Minecraft Monsters specific
+		if (minetest.registered_entities["mobs:slime"]) then
+			table.insert(mobspawn.mobs,	{name="slime", desc="Slime", code="mobs:slime"})
+		end
+		if (minetest.registered_entities["mobs:herobrine"]) then
+			table.insert(mobspawn.mobs,	{name="herobrine", desc="Herobrine", code="mobs:herobrine"})
+		end
+		if (minetest.registered_entities["mobs:zombie"]) then
+			table.insert(mobspawn.mobs,	{name="zombie", desc="Zombie", code="mobs:zombie"})
+		end
+		if (minetest.registered_entities["mobs:spider"]) then
+			table.insert(mobspawn.mobs,	{name="spider", desc="Spider", code="mobs:spider"})
+		end
+		if (minetest.registered_entities["mobs:creeper"]) then
+			table.insert(mobspawn.mobs,	{name="creeper", desc="Creeper", code="mobs:creeper"})
+		end
 		
 		--table.insert(mobspawn.mobs,	{name="sheep", desc="Sheep", code="mobs:sheep"})
 		--table.insert(mobspawn.mobs,	{name="chicken", desc="Chicken", code="mobs:chicken"})
